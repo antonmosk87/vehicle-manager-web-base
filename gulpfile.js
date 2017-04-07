@@ -38,6 +38,6 @@ gulp.task('reload', function() {
 /* starts a browser-sync server */
 gulp.task('serve', ['inject', 'watch'], function() {
     return browserSync.init({
-        server: './'
+        server: './src'
     })
 });

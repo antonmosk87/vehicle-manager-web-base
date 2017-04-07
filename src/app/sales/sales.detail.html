@@ -1,0 +1,40 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Edit Sale
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          <label for="">Customer Name</label>
+          <input type="text" class="form-control" ng-model="salesDetailCtrl.sale.customerName">
+        </div>
+      </div>
+      <div class="col-xs-6">
+
+        <div class="form-group">
+          <label for="">Vehicle Name</label>
+          <input type="text" class="form-control" ng-model="salesDetailCtrl.sale.vehicleName">
+        </div>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="">Invoice Date</label>
+      <input type="date" class="form-control" ng-model="salesDetailCtrl.sale.invoiceDate">
+    </div>
+    <div class="form-group">
+      <label for="">Payment Date</label>
+      <input type="date" class="form-control" ng-model="salesDetailCtrl.sale.paymentReceived">
+    </div>
+    <div class="form-group">
+      <label for="">Sales Price</label>
+      <input type="text" class="form-control" ng-model="salesDetailCtrl.sale.salePrice">
+    </div>
+  </div>
+  <div class="panel-footer clearfix">
+    <button class="btn btn-success pull-right" ng-click="salesDetailCtrl.save()">
+      Save <i class="glyphicon glyphicon-save"></i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Color</th>
+      <th>Type</th>
+      <th>Price</th>
+      <th width="1%"></th>
+      <th width="1%"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="vehicle in vehiclesGridCtrl.vehicles">
+      <td>{{vehicle.year}}</td>
+      <td>{{vehicle.make}}</td>
+      <td>{{vehicle.model}}</td>
+      <td>{{vehicle.color}}</td>
+      <td>{{vehicle.vehicleType}}</td>
+      <td>{{vehicle.retailPrice | currency: "$"}}</td>
+
+      <td>
+        <a ui-sref="vehicles.detail({ id: vehicle.vehicleId })" class="btn btn-primary">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+      </td>
+      <td>
+        <a href="" class="btn btn-danger" ng-click="vehiclesGridCtrl.remove(vehicle)">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
