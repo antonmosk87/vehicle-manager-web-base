@@ -34,7 +34,7 @@
           vehiclesFactory
             .update(vm.vehicle.vehicleId, vm.vehicle)
             .then(function() {
-              SweetAlert.swal("Customer saved!", "Good shit!", "success");
+              SweetAlert.swal("Vehicle saved!", "Good!", "success");
             })
         }
     }

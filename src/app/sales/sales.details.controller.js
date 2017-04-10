@@ -5,32 +5,34 @@
         .module('app.sales')
         .controller('SalesDetailController', SalesDetailController);
 
-    SalesDetailController.$inject = ['salesFactory', 'SweetAlert', '$stateParams'];
+    SalesDetailController.$inject = ['vehiclesFactory', 'customersFactory', 'salesFactory', 'SweetAlert', '$stateParams'];
 
     /* @ngInject */
-    function SalesDetailController(salesFactory, SweetAlert, $stateParams) {
+    function SalesDetailController(vehiclesFactory, customersFactory, salesFactory, SweetAlert, $stateParams) {
         var vm = this;
+
+        activate();
 
         vm.save = save;
 
-        activate();
+
 
         function activate() {
           //http://localhost:3000/#/sales/detail/1
           // grab the sale that matches the id provided in the URL
           var saleId = $stateParams.id;
 
-          // customersFactory
-          //   .getAll()
-          //   .then(function(customers) {
-          //     vm.customers = customers;
-          //   });
+           customersFactory
+             .getAll()
+             .then(function(customer) {
+               vm.customers = customer;
+             });
 
-            // vehiclesFactory
-            //   .getAll()
-            //   .then(function(vehicles) {
-            //     vm.vehicles = vehicles.data;
-            //   });
+             vehiclesFactory
+               .getAll()
+               .then(function(vehicle) {
+                 vm.vehicles = vehicle;
+               });
 
           if(saleId) {
             salesFactory
@@ -55,15 +57,15 @@
 
           if(saleId) {
             salesFactory
-              .update(vm.sale.saleId, vm.sale.sale)
+              .update(vm.sale.saleId, vm.sale)
               .then(function() {
-                SweetAlert.swal("Customer saved!", "Nice!", "success");
+                SweetAlert.swal("You just updated a sale!", "Nice!", "success");
               });
           } else {
             salesFactory
-            .create(vm.sale.sale)
+            .create(vm.sale)
             .then(function() {
-              SweetAlert.swal("Customer saved!", "Good Job!", "success");
+              SweetAlert.swal("You just created a sale!", "Good Job!", "success");
             })
           }
 

@@ -1,40 +1,52 @@
 <div class="panel panel-primary">
-  <div class="panel-heading">
-    Edit Sale
-  </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="col-xs-6">
-        <div class="form-group">
-          <label for="">Customer Name</label>
-          <input type="text" class="form-control" ng-model="salesDetailCtrl.sale.customerName">
+    <div class="panel-heading">
+        Edit Sale
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                  <label for="">Customer</label>
+                  <ui-select ng-model="salesDetailCtrl.selectedCustomer" theme="bootstrap">
+                      <ui-select-match placeholder="Select or search a customer">{{$select.selected.firstName}}{{$select.selected.lastName}}</ui-select-match>
+                      <ui-select-choices repeat="customer in salesDetailCtrl.customers | filter: $select.search">
+                          <div ng-bind-html="customer.firstName + ' ' + customer.lastName | highlight: $select.search"></div>
+                          <small ng-bind-html="customer.emailAddress | highlight: $select.search"></small>
+                      </ui-select-choices>
+                  </ui-select>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="">Vehicle</label>
+                    <ui-select ng-model="salesDetailCtrl.selectedVehicle" theme="bootstrap">
+                        <ui-select-match placeholder="Select or search a vehicle">{{$select.selected.year}} {{$select.selected.make}} {{$select.selected.model}}</ui-select-match>
+                        <ui-select-choices repeat="vehicle in salesDetailCtrl.vehicles | filter: $select.search">
+                            <div ng-bind-html="vehicle.make + ' ' + vehicle.model | highlight: $select.search"></div>
+                            <small ng-bind-html="vehicle.year | highlight: $select.search"></small>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-xs-6">
-
-        <div class="form-group">
-          <label for="">Vehicle Name</label>
-          <input type="text" class="form-control" ng-model="salesDetailCtrl.sale.vehicleName">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="">Invoice Date</label>
+                    <input type="date" class="form-control" ng-model="salesDetailCtrl.sale.invoiceDate">
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="">Payment Date</label>
+                    <input type="date" class="form-control" ng-model="salesDetailCtrl.sale.paymentReceived">
+                </div>
+            </div>
         </div>
-
-      </div>
     </div>
-    <div class="form-group">
-      <label for="">Invoice Date</label>
-      <input type="date" class="form-control" ng-model="salesDetailCtrl.sale.invoiceDate">
-    </div>
-    <div class="form-group">
-      <label for="">Payment Date</label>
-      <input type="date" class="form-control" ng-model="salesDetailCtrl.sale.paymentReceived">
-    </div>
-    <div class="form-group">
-      <label for="">Sales Price</label>
-      <input type="text" class="form-control" ng-model="salesDetailCtrl.sale.salePrice">
-    </div>
-  </div>
-  <div class="panel-footer clearfix">
-    <button class="btn btn-success pull-right" ng-click="salesDetailCtrl.save()">
+    <div class="panel-footer clearfix">
+        <button class="btn btn-success pull-right"  ng-click="salesDetailCtrl.save()">
       Save <i class="glyphicon glyphicon-save"></i>
     </button>
-  </div>
+    </div>
 </div>
